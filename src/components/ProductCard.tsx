@@ -39,8 +39,8 @@ export default function ProductCard({ id, name, category, price, imageUrl }: Pro
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
         
-        {/* Hover Actions */}
-        <div className="absolute -bottom-16 left-0 w-full bg-white/95 backdrop-blur-sm py-4 flex justify-center gap-6 transition-all duration-300 group-hover:bottom-0 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+        {/* Hover Actions (Always visible on mobile, hover on desktop) */}
+        <div className="absolute bottom-0 md:-bottom-16 left-0 w-full bg-white/95 backdrop-blur-sm py-4 flex justify-center gap-6 transition-all duration-300 md:group-hover:bottom-0 shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
           <button onClick={handleAddToCart} className="text-jad-black hover:text-jad-gold transition-colors" title="Add to Cart">
             <ShoppingBag size={20} />
           </button>
