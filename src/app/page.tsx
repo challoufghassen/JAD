@@ -10,28 +10,28 @@ const MOCK_BEST_SELLERS = [
     name: 'Noir Absolu',
     category: "Men's Collection",
     price: 285.00,
-    imageUrl: '/images/1.jpg',
+    imageUrl: '/images/1h.jpg',
   },
   {
     id: '2',
     name: "Lumière d'Or",
     category: "Women's Collection",
     price: 245.00,
-    imageUrl: '/images/2.jpg',
+    imageUrl: '/images/1f.jpg',
   },
   {
     id: '3',
     name: 'Oud Royal',
     category: 'Unisex Collection',
     price: 320.00,
-    imageUrl: '/images/3.jpg', 
+    imageUrl: '/images/1x.png', 
   },
   {
     id: '4',
     name: 'Rose Blanche',
     category: "Women's Collection",
     price: 195.00,
-    imageUrl: '/images/siF.jpg', 
+    imageUrl: '/images/2f.jpg', 
   }
 ];
 
