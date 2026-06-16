@@ -33,26 +33,22 @@ export default function CheckoutPage() {
     // Build articles list
     let articlesText = '';
     items.forEach(item => {
-      articlesText += `🏷️ *${item.name}*\n`;
-      articlesText += `   • Qté: ${item.quantity}\n`;
-      articlesText += `   • ID Produit: #${item.id}\n`;
-      articlesText += `   • Prix: $${item.price.toFixed(2)}\n\n`;
+      articlesText += `\uD83D\uDD38 *${item.name}*\n`;
+      articlesText += `   \u21B3 Qt\u00E9: ${item.quantity}  |  Prix: $${item.price.toFixed(2)}\n\n`;
     });
 
-    const message = `*⭐ NOUVELLE COMMANDE JAD PERFUME ⭐*
-
-👤 *Date:* ${date}
-👤 *Client:* ${formData.name}
-📞 *Tel (Contact):* ${formData.phone}
-📍 *Adresse:* ${formData.address}
-
-🛍️ *ARTICLES:*
-
-${articlesText}──────────────────
-💰 *TOTAL À PAYER:* $${cartTotal.toFixed(2)}
-──────────────────
-
-Je souhaite confirmer ma commande. Voici mes coordonnées pour la livraison.`;
+    const message = `\u2728 *NOUVELLE COMMANDE JAD PERFUME* \u2728\n\n` +
+      `\uD83D\uDCC5 *Date:* ${date}\n` +
+      `\uD83D\uDC64 *Client:* ${formData.name}\n` +
+      `\uD83D\uDCDE *T\u00E9l\u00E9phone:* ${formData.phone}\n` +
+      `\uD83D\uDCCD *Adresse:* ${formData.address}\n\n` +
+      `\uD83D\uDED2 *D\u00C9TAILS DE LA COMMANDE:*\n` +
+      `----------------------------------------\n` +
+      `${articlesText}` +
+      `----------------------------------------\n` +
+      `\uD83D\uDCB0 *TOTAL \u00C0 PAYER:* $${cartTotal.toFixed(2)}\n` +
+      `----------------------------------------\n\n` +
+      `Je souhaite confirmer ma commande. Voici mes coordonn\u00E9es pour la livraison. \uD83D\uDE4F`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/21650556705?text=${encodedMessage}`;
