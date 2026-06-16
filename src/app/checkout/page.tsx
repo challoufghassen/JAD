@@ -54,12 +54,11 @@ ${articlesText}──────────────────
 
 Je souhaite confirmer ma commande. Voici mes coordonnées pour la livraison.`;
 
-    // Encode for URL
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/21650556705?text=${encodedMessage}`;
     
-    // Redirect to WhatsApp
-    window.open(whatsappUrl, '_blank');
+    // Redirect to WhatsApp safely without popup blocker issues
+    window.location.href = whatsappUrl;
   };
 
   if (items.length === 0) {
