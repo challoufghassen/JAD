@@ -4,8 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ShoppingBag, Eye, Heart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
-import { useState } from 'react';
+import { useWishlist } from '@/context/WishlistContext';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 
 interface ProductCardProps {
   id: string;
@@ -17,11 +18,23 @@ interface ProductCardProps {
 
 export default function ProductCard({ id, name, category, price, imageUrl }: ProductCardProps) {
   const { addToCart } = useCart();
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const { wishlist, addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const isWishlisted = isInWishlist(id);
   const router = useRouter();
 
   const handleAddToCart = () => {
     addToCart({ id, name, price, imageUrl }, 1);
+    toast.success(`${name} ajouté au panier`);
+  };
+
+  const toggleWishlist = () => {
+    if (isWishlisted) {
+      removeFromWishlist(id);
+      toast.success(`${name} retiré des favoris`);
+    } else {
+      addToWishlist({ id, name, price, imageUrl, category });
+      toast.success(`${name} ajouté aux favoris`);
+    }
   };
 
   const handleQuickView = () => {
@@ -47,7 +60,7 @@ export default function ProductCard({ id, name, category, price, imageUrl }: Pro
           <button onClick={handleQuickView} className="text-jad-black hover:text-jad-gold transition-colors" title="Quick View">
             <Eye size={20} />
           </button>
-          <button onClick={() => setIsWishlisted(!isWishlisted)} className="text-jad-black hover:text-jad-gold transition-colors" title="Add to Wishlist">
+          <button onClick={toggleWishlist} className="text-jad-black hover:text-jad-gold transition-colors" title="Add to Wishlist">
             <Heart size={20} className={isWishlisted ? "fill-jad-gold text-jad-gold" : ""} />
           </button>
         </div>

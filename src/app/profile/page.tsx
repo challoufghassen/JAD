@@ -1,12 +1,16 @@
 "use client";
 
 import { useAuth } from '@/context/AuthContext';
+import { useWishlist } from '@/context/WishlistContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { User as UserIcon, Package, Heart, LogOut } from 'lucide-react';
+import { User as UserIcon, Package, Heart, LogOut, Trash2 } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ProfilePage() {
   const { user, logout } = useAuth();
+  const { wishlist, removeFromWishlist } = useWishlist();
   const router = useRouter();
 
   // Redirect to login if no user is found
@@ -63,10 +67,36 @@ export default function ProfilePage() {
               <Heart className="text-jad-gold" size={24} />
               <h2 className="text-xl uppercase tracking-widest text-jad-black">My Wishlist</h2>
             </div>
-            <div className="text-gray-500 font-light flex flex-col items-center justify-center h-32">
-              <p>Your wishlist is empty.</p>
-              <a href="/shop" className="text-jad-gold hover:text-jad-black transition-colors mt-2 underline underline-offset-4">Browse Collection</a>
-            </div>
+            
+            {wishlist.length === 0 ? (
+              <div className="text-gray-500 font-light flex flex-col items-center justify-center h-32">
+                <p>Your wishlist is empty.</p>
+                <Link href="/shop" className="text-jad-gold hover:text-jad-black transition-colors mt-2 underline underline-offset-4">Browse Collection</Link>
+              </div>
+            ) : (
+              <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2">
+                {wishlist.map(item => (
+                  <div key={item.id} className="flex items-center gap-4 bg-gray-50 p-3 rounded-sm">
+                    <div className="relative w-16 h-16 bg-white flex-shrink-0">
+                      <Image src={item.imageUrl} alt={item.name} fill className="object-contain p-1" />
+                    </div>
+                    <div className="flex-1">
+                      <Link href={`/product/${item.id}`} className="text-jad-black font-medium hover:text-jad-gold transition-colors line-clamp-1">
+                        {item.name}
+                      </Link>
+                      <p className="text-jad-gold text-sm">${item.price.toFixed(2)}</p>
+                    </div>
+                    <button 
+                      onClick={() => removeFromWishlist(item.id)}
+                      className="text-gray-400 hover:text-red-500 transition-colors p-2"
+                      title="Remove from Wishlist"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
