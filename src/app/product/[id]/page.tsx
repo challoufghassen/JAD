@@ -6,16 +6,12 @@ import { Heart, ShoppingBag, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
-
-const MOCK_PRODUCTS = {
-  '1': { id: '1', name: 'Noir Absolu', category: "Men's Collection", price: 285.00, imageUrl: '/images/1.jpg', description: 'A bold, sophisticated blend of dark woods, leather, and rare spices. Noir Absolu is designed for the modern gentleman who commands the room. The opening notes of bergamot give way to a deep, resonant heart of oud and vetiver.', notes: { top: 'Bergamot, Black Pepper', heart: 'Oud, Leather, Rose', base: 'Vetiver, Amber, Musk' } },
-  '2': { id: '2', name: "Lumière d'Or", category: "Women's Collection", price: 245.00, imageUrl: '/images/2.jpg', description: 'Radiant and effervescent, Lumière d\'Or captures the essence of a sunlit garden. Delicate white florals dance with bright citrus, settling into a warm, sensual vanilla base. A truly captivating signature scent.', notes: { top: 'Mandarin, Pear', heart: 'Jasmine, Orange Blossom', base: 'Vanilla, White Musk' } },
-};
+import { PRODUCTS } from '@/data/products';
 
 export default function ProductDetail() {
   const params = useParams();
   const id = params?.id as string;
-  const product = MOCK_PRODUCTS[id as keyof typeof MOCK_PRODUCTS] || MOCK_PRODUCTS['1'];
+  const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
   
   const [quantity, setQuantity] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);

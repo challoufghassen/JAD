@@ -1,23 +1,12 @@
 import ProductCard from '@/components/ProductCard';
 import Link from 'next/link';
-
-const MOCK_PRODUCTS = [
-  { id: '1', name: "Lumière d'Or", category: "Women's Collection", price: 245.00, imageUrl: '/images/1f.jpg' },
-  { id: '2', name: 'Noir Absolu', category: "Men's Collection", price: 285.00, imageUrl: '/images/1h.jpg' },
-  { id: '3', name: 'Oud Royal', category: 'Unisex Collection', price: 320.00, imageUrl: '/images/1x.png' },
-  { id: '4', name: 'Rose Blanche', category: "Women's Collection", price: 195.00, imageUrl: '/images/2f.jpg' },
-  { id: '5', name: 'Santal Mystique', category: "Men's Collection", price: 210.00, imageUrl: '/images/2h.jpg' },
-  { id: '6', name: 'Fleur de Coton', category: "Women's Collection", price: 180.00, imageUrl: '/images/3f.jpg' },
-  { id: '7', name: 'Ambre Nuit', category: "Women's Collection", price: 190.00, imageUrl: '/images/4f.jpg' },
-  { id: '8', name: 'Jasmin Secret', category: "Women's Collection", price: 205.00, imageUrl: '/images/5f.jpg' },
-  { id: '9', name: 'Vanille Exquise', category: "Women's Collection", price: 220.00, imageUrl: '/images/6f.jpg' },
-];
+import { PRODUCTS } from '@/data/products';
 
 export default async function Shop({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
   const params = await searchParams;
   const currentCategory = params.category || 'all';
 
-  const filteredProducts = MOCK_PRODUCTS.filter(product => {
+  const filteredProducts = PRODUCTS.filter(product => {
     if (currentCategory === 'mens') return product.category === "Men's Collection";
     if (currentCategory === 'womens') return product.category === "Women's Collection";
     if (currentCategory === 'unisex') return product.category === "Unisex Collection";
