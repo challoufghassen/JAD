@@ -17,13 +17,6 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
-          {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-jad-black">
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center justify-center md:justify-start flex-1 md:flex-none">
             <Link href="/" className="flex items-center">
@@ -65,7 +58,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu right icons */}
           <div className="md:hidden flex items-center space-x-4">
              <button onClick={() => setIsCartOpen(true)} className="text-jad-black hover:text-jad-gold transition-colors relative">
               <ShoppingBag size={20} />
@@ -90,10 +83,14 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-100">
           <div className="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col">
-            <Link href="/" className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">Home</Link>
-            <Link href="/shop" className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">Shop</Link>
-            <Link href="/about" className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">About Us</Link>
-            <Link href="/contact" className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">Contact</Link>
+            <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">Home</Link>
+            <Link href="/shop" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">Shop</Link>
+            <Link href="/about" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">About Us</Link>
+            <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-black hover:text-jad-gold hover:bg-gray-50">Contact</Link>
+            <div className="border-t border-gray-100 my-2 pt-2"></div>
+            <Link href={user ? "/profile" : "/login"} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center px-3 py-3 text-base uppercase tracking-wider font-medium text-jad-gold hover:text-jad-black hover:bg-gray-50">
+              <User size={18} className="mr-3" /> {user ? "My Profile" : "Login / Register"}
+            </Link>
           </div>
         </div>
       )}
