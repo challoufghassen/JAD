@@ -1,65 +1,99 @@
-import Image from "next/image";
+import Hero from '@/components/Hero';
+import ProductCard from '@/components/ProductCard';
+import Link from 'next/link';
+import ExpositionCarousel from '@/components/ExpositionCarousel';
+
+// Mock Data for the homepage
+const MOCK_BEST_SELLERS = [
+  {
+    id: '1',
+    name: 'Noir Absolu',
+    category: "Men's Collection",
+    price: 285.00,
+    imageUrl: '/images/1.jpg',
+  },
+  {
+    id: '2',
+    name: "Lumière d'Or",
+    category: "Women's Collection",
+    price: 245.00,
+    imageUrl: '/images/2.jpg',
+  },
+  {
+    id: '3',
+    name: 'Oud Royal',
+    category: 'Unisex Collection',
+    price: 320.00,
+    imageUrl: '/images/3.jpg', 
+  },
+  {
+    id: '4',
+    name: 'Rose Blanche',
+    category: "Women's Collection",
+    price: 195.00,
+    imageUrl: '/images/siF.jpg', 
+  }
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <Hero />
+      
+      {/* Exposition Privée Horizontal Carousel */}
+      <ExpositionCarousel />
+      
+      {/* Featured Collections Section */}
+      <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
+        <h2 className="text-4xl relative inline-block mb-4 pb-4 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-16 after:h-[2px] after:bg-jad-gold">
+          Best Sellers
+        </h2>
+        <p className="text-gray-500 font-light mb-16 text-lg">Our most coveted fragrances</p>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          {MOCK_BEST_SELLERS.map((product) => (
+            <ProductCard key={product.id} {...product} />
+          ))}
+        </div>
+        
+        <div className="mt-16">
+          <Link 
+            href="/shop" 
+            className="inline-block border border-jad-black text-jad-black px-8 py-4 uppercase tracking-widest text-sm hover:bg-jad-black hover:text-white transition-colors duration-300"
+          >
+            View All Collections
+          </Link>
+        </div>
+      </section>
+
+      {/* Brand Story Highlight */}
+      <section className="bg-jad-cream py-24 px-4 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl mb-6">The Art of Perfumery</h2>
+          <p className="text-gray-600 font-light text-lg mb-10 leading-relaxed">
+            Every bottle of JAD Perfume is a testament to luxury craftsmanship. We source only the rarest and finest ingredients from around the globe to create unforgettable scent profiles that linger and evolve gracefully on your skin.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link 
+            href="/about" 
+            className="inline-block bg-jad-gold text-white px-8 py-4 uppercase tracking-[0.2em] text-sm hover:bg-jad-black transition-colors duration-300"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Discover Our Story
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Testimonial */}
+      <section className="bg-jad-black text-white py-24 px-4 text-center border-t border-white/10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl text-jad-gold mb-12">A Symphony of Scents</h2>
+          <p className="font-serif italic text-2xl md:text-3xl leading-relaxed mb-8 text-jad-cream">
+            "Plus qu’une fragrance, un cadeau pour les sens. Un instant parfumé, à offrir ou à s’offrir"
+          </p>
+          <div className="text-sm uppercase tracking-[0.2em] text-jad-gold font-semibold">
+            - EMNA
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
