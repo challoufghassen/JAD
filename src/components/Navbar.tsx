@@ -17,8 +17,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           
+          {/* Mobile Spacer (Balances the right icons so the logo stays perfectly centered) */}
+          <div className="md:hidden flex-shrink-0 w-[88px]"></div>
+
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center justify-center md:justify-start flex-1 md:flex-none">
+          <div className="flex-shrink-0 flex items-center justify-center flex-1 md:flex-none">
             <Link href="/" className="flex items-center">
               <Image 
                 src="/logo.png" 

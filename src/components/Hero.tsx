@@ -3,16 +3,16 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative h-[80vh] bg-jad-cream flex items-center overflow-hidden">
+    <section className="relative min-h-[90vh] md:h-[80vh] bg-jad-cream flex items-center overflow-hidden py-12 md:py-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center relative z-10">
         
         {/* Content */}
-        <div className="w-full md:w-1/2 pt-12 md:pt-0 pb-12 md:pb-0 z-20">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 text-jad-black">
+        <div className="w-full md:w-1/2 pt-4 md:pt-0 pb-12 md:pb-0 z-20 mt-8 md:mt-0">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-4 md:mb-6 text-jad-black">
             Experience the <br />
             <span className="italic text-jad-gold">Essence</span> of Luxury
           </h1>
-          <p className="text-lg text-gray-600 mb-8 max-w-md font-light leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 mb-8 max-w-md font-light leading-relaxed">
             Exclusive Perfume Extracts Crafted for Lasting Elegance. Discover your signature scent with JAD Perfume.
           </p>
           <Link 
