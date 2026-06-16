@@ -27,7 +27,7 @@ export default function Hero() {
         <div className="w-full md:w-1/2 relative h-[400px] md:h-full md:absolute md:right-0 md:top-0 md:w-1/2 z-10">
           <div className="absolute inset-0 bg-gradient-to-r from-jad-cream via-jad-cream/50 to-transparent z-10 hidden md:block"></div>
           <Image
-            src="/images/H1.jpg"
+            src="/images/1x.png"
             alt="Luxury Perfume Collection"
             fill
             priority
